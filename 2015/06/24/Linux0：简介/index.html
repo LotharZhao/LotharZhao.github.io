@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit10.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit9.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="简介,Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="操作系统（Operation System，OS） 操作系统作为接口的示意图    没有安装操作系统的计算机，通常被称为 裸机  如果想在裸机上运行自己所编写的程序，就必须用机器语言书写程序 如果计算机上安装了操作系统，就可以在操作系统上安装支持的高级语言环境，用高级语言开发程序   操作系统的作用 是现代计算机系统中最基本和最重要的系统软件 是配置在计算机硬件上的第一层软件，是对硬件系统的首次扩">
+<meta name="keywords" content="简介,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux0：简介">
+<meta property="og:url" content="https://lotharzhao.github.io/2015/06/24/Linux0：简介/index.html">
+<meta property="og:site_name" content="LotharZhao">
+<meta property="og:description" content="操作系统（Operation System，OS） 操作系统作为接口的示意图    没有安装操作系统的计算机，通常被称为 裸机  如果想在裸机上运行自己所编写的程序，就必须用机器语言书写程序 如果计算机上安装了操作系统，就可以在操作系统上安装支持的高级语言环境，用高级语言开发程序   操作系统的作用 是现代计算机系统中最基本和最重要的系统软件 是配置在计算机硬件上的第一层软件，是对硬件系统的首次扩">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://lotharzhao.github.io/images/linux/2_OS作为接口的示意图.png">
+<meta property="og:image" content="https://lotharzhao.github.io/images/linux/2_机房照片.jpg">
+<meta property="og:image" content="https://lotharzhao.github.io/images/linux/2_大型机.png">
+<meta property="og:image" content="https://lotharzhao.github.io/images/linux/2_unix之父.png">
+<meta property="og:image" content="https://lotharzhao.github.io/images/linux/2_unix家谱.jpg">
+<meta property="og:image" content="https://lotharzhao.github.io/images/linux/2_林纳斯.jpg">
+<meta property="og:updated_time" content="2018-04-17T03:17:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux0：简介">
+<meta name="twitter:description" content="操作系统（Operation System，OS） 操作系统作为接口的示意图    没有安装操作系统的计算机，通常被称为 裸机  如果想在裸机上运行自己所编写的程序，就必须用机器语言书写程序 如果计算机上安装了操作系统，就可以在操作系统上安装支持的高级语言环境，用高级语言开发程序   操作系统的作用 是现代计算机系统中最基本和最重要的系统软件 是配置在计算机硬件上的第一层软件，是对硬件系统的首次扩">
+<meta name="twitter:image" content="https://lotharzhao.github.io/images/linux/2_OS作为接口的示意图.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '0CKA439RWX',
+      apiKey: '7ace8b872181d6b98f32d1757c2b5fa9',
+      indexName: 'wulalala',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lotharzhao.github.io/2015/06/24/Linux0：简介/"/>
+
+
+
+
+
+  <title>Linux0：简介 | LotharZhao</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/my_js/love.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LotharZhao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Warmly welcome to my blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lotharzhao.github.io/2015/06/24/Linux0：简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="呜啦啦拉啦涛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LotharZhao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux0：简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-24T16:23:39+08:00">
+                2015-06-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-17T11:17:32+08:00">
+                2018-04-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="操作系统（Operation-System，OS）"><a href="#操作系统（Operation-System，OS）" class="headerlink" title="操作系统（Operation System，OS）"></a>操作系统（Operation System，OS）</h2><blockquote>
+<p>操作系统作为接口的示意图</p>
+</blockquote>
+<p><img src="\images\linux\2_OS作为接口的示意图.png" alt="OS作为接口的示意图"></p>
+<blockquote>
+<p>没有安装操作系统的计算机，通常被称为 <strong>裸机</strong></p>
+<ul>
+<li>如果想在<strong>裸机</strong>上运行自己所编写的程序，就必须用机器语言书写程序</li>
+<li>如果计算机上安装了操作系统，就可以在操作系统上安装支持的高级语言环境，用高级语言开发程序</li>
+</ul>
+</blockquote>
+<h3 id="操作系统的作用"><a href="#操作系统的作用" class="headerlink" title="操作系统的作用"></a>操作系统的作用</h3><ul>
+<li>是现代计算机系统中<strong>最基本和最重要</strong>的系统软件</li>
+<li>是<strong>配置在计算机硬件上的第一层软件</strong>，是对硬件系统的首次扩展</li>
+<li>主要作用是<strong>管理好硬件设备</strong>，并为用户和应用程序提供一个简单的接口，以便于使用</li>
+<li>而其他的诸如编译程序、数据库管理系统，以及大量的应用软件，都直接依赖于操作系统的支持</li>
+</ul>
+<h3 id="不同应用领域的主流操作系统"><a href="#不同应用领域的主流操作系统" class="headerlink" title="不同应用领域的主流操作系统"></a>不同应用领域的主流操作系统</h3><ul>
+<li>桌面操作系统</li>
+<li>服务器操作系统</li>
+<li>嵌入式操作系统</li>
+<li>移动设备操作系统</li>
+</ul>
+<h4 id="1-gt-桌面操作系统"><a href="#1-gt-桌面操作系统" class="headerlink" title="1&gt; 桌面操作系统"></a>1&gt; 桌面操作系统</h4><ul>
+<li>Windows 系列<ul>
+<li>用户群体大</li>
+</ul>
+</li>
+<li>macOS<ul>
+<li>适合于开发人员</li>
+</ul>
+</li>
+<li>Linux<ul>
+<li>应用软件少</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-gt-服务器操作系统"><a href="#2-gt-服务器操作系统" class="headerlink" title="2&gt; 服务器操作系统"></a>2&gt; 服务器操作系统</h4><ul>
+<li>Linux<ul>
+<li>安全、稳定、免费</li>
+<li>占有率高</li>
+</ul>
+</li>
+<li>Windows Server<ul>
+<li>付费</li>
+<li>占有率低</li>
+</ul>
+</li>
+</ul>
+<p><img src="\images\linux\2_机房照片.jpg" alt="机房照片"></p>
+<h4 id="3-gt-嵌入式操作系统"><a href="#3-gt-嵌入式操作系统" class="headerlink" title="3&gt; 嵌入式操作系统"></a>3&gt; 嵌入式操作系统</h4><ul>
+<li>Linux</li>
+</ul>
+<h4 id="4-gt-移动设备操作系统"><a href="#4-gt-移动设备操作系统" class="headerlink" title="4&gt; 移动设备操作系统"></a>4&gt; 移动设备操作系统</h4><ul>
+<li>iOS</li>
+<li>Android（基于<code>Linux</code>）</li>
+</ul>
+<h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><p>虚拟机（Virtual Machine）指通过软件模拟的具有完整硬件系统功能的、运行在一个完全隔离环境中的完整计算机系统</p>
+<ul>
+<li>虚拟系统通过生成现有操作系统的全新虚拟镜像，具有真实操作系统完全一样的功能</li>
+<li>进入虚拟系统后，所有操作都是在这个全新的独立的虚拟系统里面进行，可以独立安装运行软件，保存数据，拥有自己的独立桌面，不会对真正的系统产生任何影响</li>
+<li>而且能够在现有系统与虚拟镜像之间灵活切换的一类操作系统</li>
+</ul>
+<h2 id="操作系统的发展历史"><a href="#操作系统的发展历史" class="headerlink" title="操作系统的发展历史"></a>操作系统的发展历史</h2><h3 id="Unix"><a href="#Unix" class="headerlink" title="Unix"></a>Unix</h3><p>1965年之前的时候，电脑并不像现在一样普遍，它可不是一般人能碰的起的，除非是军事或者学院的研究机构，而且当时大型主机至多能提供30台终端（30个键盘、显示器)，连接一台电脑<br><img src="\images\linux\2_大型机.png" alt="大型机"></p>
+<p><strong>为了解决数量不够用的问题</strong></p>
+<ul>
+<li>1965 年左后由<strong>贝尔实验室</strong>加入了<strong>麻省理工学院</strong>以及<strong>通用电气</strong>合作的计划 —— 该计划要建立一套<strong>多使用者(multi－user)</strong>、<strong>多任务(multi－processor)</strong>、<strong>多层次(multi－level)</strong>的<strong>MULTICS</strong>操作系统，想让大型主机支持300台终端</li>
+<li>1969年前后这个项目进度缓慢，资金短缺，贝尔实验室退出了研究</li>
+<li>1969年从这个项目中退出的<strong>Ken Thompson</strong> 当时在实验室无聊时，为了让一台空闲的电脑上能够运行”星际旅行（Space Travel）”游戏，在8月份左右趁着其妻子探亲的时间，<strong>用了1个月的时间</strong>，使用汇编写出了Unix操作系统的原型</li>
+<li>1970 年，美国贝尔实验室的<strong>Ken Thompson</strong>，以<strong>BCPL</strong>语言为基础，设计出很简单且很接近硬件的 <strong>B语言</strong>（取BCPL的首字母），并且他用<strong>B语言</strong>写了第一个UNIX操作系统</li>
+<li>1971年，同样酷爱”星际旅行（Space Travel）” 的<strong>Dennis M.Ritchie</strong> 为了能早点儿玩上游戏，加入了<strong>Thompson</strong>的开发项目，合作开发UNIX，他的主要工作是改造<strong>B语言</strong>，因为<strong>B 语言</strong>的跨平台性较差</li>
+<li>1972年，<strong>Dennis M.Ritchie</strong> 在 <strong>B 语言</strong> 的基础上最终设计出了一种新的语言，他取了<strong>BCPL</strong>的第二个字母作为这种语言的名字，这就是<strong>C语言</strong></li>
+<li>1973 年初，<strong>C语言</strong>的主体完成，<strong>Thompson</strong>和<strong>Ritchie</strong> 迫不及待地开始用它完全重写了现在大名鼎鼎的<strong>Unix 操作系统</strong><br><img src="\images\linux\2_unix之父.png" alt="unix之父"></li>
+</ul>
+<p>肯·汤普逊（左）和丹尼斯·里奇（右）</p>
+<h4 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h4><ul>
+<li>在把<strong>UNIX</strong>移植到其他类型的计算机上使用时，<strong>C语言</strong>强大的移植性（Portability）在此显现<ul>
+<li>机器语言和汇编语言都不具有移植性，为x86开发的程序，不可能在Alpha，SPARC和ARM等机器上运行</li>
+</ul>
+</li>
+<li>而<strong>C语言</strong>程序则可以使用在任意架构的处理器上，只要那种架构的处理器<strong>具有对应的C语言编译器和库</strong>，然后将C源代码编译、连接成目标二进制文件之后即可运行 </li>
+</ul>
+<h4 id="Unix家谱"><a href="#Unix家谱" class="headerlink" title="Unix家谱"></a>Unix家谱</h4><p><img src="\images\linux\2_unix家谱.jpg" alt="unix家谱"></p>
+<h3 id="Minix"><a href="#Minix" class="headerlink" title="Minix"></a>Minix</h3><ul>
+<li>因为<strong>AT&amp;T（通用电气）</strong>的政策改变，在Version 7 Unix推出之后，发布新的使用条款，将UNIX源代码私有化，在大学中不再能使用 UNIX 源代码</li>
+<li><strong>Andrew S. Tanenbaum（塔能鲍姆）</strong>教授为了能<strong>在课堂上教授学生操作系统运作的细节</strong>，决定在不使用任何AT&amp;T的源代码前提下，自行开发与UNIX兼容的操作系统，以避免版权上的争议</li>
+<li>以<strong>小型UNIX（mini-UNIX）</strong>之意，将它称为<strong>MINIX</strong></li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul>
+<li>1991年<strong>林纳斯（Linus）</strong>就读于赫尔辛基大学期间，对Unix产生浓厚兴趣，尝试着在Minix上做一些开发工作</li>
+<li>因为<strong>Minix</strong>只是教学使用，因此功能并不强，<strong>林纳斯</strong>经常要用他的终端<strong>仿真器（Terminal Emulator）</strong>去访问大学主机上的新闻组和邮件，为了方便读写和下载文件，他自己编写了磁盘驱动程序和文件系统，这些在后来成为了Linux第一个内核的雏形，当时，他年仅21岁！</li>
+<li><strong>林纳斯</strong> 利用GNU的bash当做开发环境，gcc当做编译工具，编写了Linux内核，一开始Linux并不能兼容Unix<ul>
+<li>即Unix上跑的应用程序不能在Linux上跑，即应用程序与内核之间的接口不一致</li>
+<li>一开始Linux只适用于386，后来经过全世界的网友的帮助，最终能够兼容多种硬件<br><img src="\images\linux\2_林纳斯.jpg" alt="林纳斯"></li>
+</ul>
+</li>
+</ul>
+<h2 id="Linux内核及发行版"><a href="#Linux内核及发行版" class="headerlink" title="Linux内核及发行版"></a>Linux内核及发行版</h2><h3 id="Linux内核版本"><a href="#Linux内核版本" class="headerlink" title="Linux内核版本"></a>Linux内核版本</h3><ul>
+<li><strong>内核（kernel）</strong>是系统的心脏，是运行程序和管理像磁盘和打印机等硬件设备的核心程序，它提供了一个在裸设备与应用程序间的抽象层</li>
+<li>Linux内核版本又分为<strong>稳定版</strong>和<strong>开发版</strong>，两种版本是相互关联，相互循环<ul>
+<li><strong>稳定版</strong>：具有工业级强度，可以广泛地应用和部署。新的稳定版相对于较旧的只是修正一些bug或加入一些新的驱动程序</li>
+<li><strong>开发版</strong>：由于要试验各种解决方案，所以变化很快</li>
+</ul>
+</li>
+<li>内核源码网址：<a href="http://www.kernel.org" target="_blank" rel="noopener">http://www.kernel.org</a></li>
+</ul>
+<blockquote>
+<p>所有来自全世界的对Linux源码的修改最终都会汇总到这个网站，由Linus领导的开源社区对其进行甄别和修改最终决定是否进入到Linux主线内核源码中</p>
+</blockquote>
+<h3 id="Linux发行版本"><a href="#Linux发行版本" class="headerlink" title="Linux发行版本"></a>Linux发行版本</h3><ul>
+<li><strong>Linux发行版（也被叫做 GNU/Linux 发行版）</strong>通常包含了包括桌面环境、办公套件、媒体播放器、数据库等应用软件</li>
+<li><p>常见的发行版本如下：</p>
+<ul>
+<li>Ubuntu</li>
+<li>Redhat</li>
+<li>Fedora</li>
+<li>openSUSE</li>
+<li>Linux Mint</li>
+<li>Debian</li>
+<li>Manjaro</li>
+<li>Mageia</li>
+<li>CentOS</li>
+<li>Arch</li>
+</ul>
+</li>
+<li><p>十大Linux服务器发行版排行榜：<a href="http://os.51cto.com/art/201612/526126.htm" target="_blank" rel="noopener">http://os.51cto.com/art/201612/526126.htm</a></p>
+</li>
+</ul>
+<blockquote>
+<p>在几乎每一份与Linux有关的榜单上，基于Debian的Ubuntu都占有一席之位。Canonical 的Ubuntu 胜过其他所有的 Linux 服务器发行版 ―― 从简单安装、出色的硬件发现，到世界级的商业支持，Ubuntu确立了难以企及的严格标准</p>
+</blockquote>
+<h2 id="Linux的应用领域"><a href="#Linux的应用领域" class="headerlink" title="Linux的应用领域"></a>Linux的应用领域</h2><h3 id="服务器领域"><a href="#服务器领域" class="headerlink" title="服务器领域"></a>服务器领域</h3><ul>
+<li>Linux在服务器领域的应用是其重要分支</li>
+<li>Linux免费、稳定、高效等特点在这里得到了很好的体现<ul>
+<li>早期因为维护、运行等原因同样受到了很大的限制</li>
+<li>近些年来Linux服务器市场得到了飞速的提升，尤其在一些高端领域尤为广泛</li>
+</ul>
+</li>
+</ul>
+<h3 id="嵌入式领域"><a href="#嵌入式领域" class="headerlink" title="嵌入式领域"></a>嵌入式领域</h3><ul>
+<li>近些年来Linux在嵌入式领域的应用得到了飞速的提高</li>
+<li>Linux运行稳定、对网络的良好支持性、低成本，且可以根据需要进行软件裁剪，内核最小可以达到几百KB等特点，使其近些年来在嵌入式领域的应用得到非常大的提高</li>
+</ul>
+<blockquote>
+<p>主要应用：<strong>机顶盒</strong>、<strong>数字电视</strong>、<strong>网络电话</strong>、<strong>程控交换机</strong>、<strong>手机</strong>、<strong>PDA</strong>、等都是其应用领域，得到了Google、三星、摩托罗拉、NEC等公司的大力推广</p>
+</blockquote>
+<h3 id="个人桌面领域"><a href="#个人桌面领域" class="headerlink" title="个人桌面领域"></a>个人桌面领域</h3><ul>
+<li>此领域是传统Linux应用最薄弱的环节</li>
+<li>传统Linux由于界面简单、操作复杂、应用软件少的缺点，一直被Windows所压制</li>
+<li>近些年来随着 <strong>Ubuntu</strong>、<strong>Fedora</strong> 等优秀桌面环境的兴起，同时各大硬件厂商对其支持的加大，Linux在个人桌面领域的占有率在逐渐的提高</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢打赏！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="呜啦啦拉啦涛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="呜啦啦拉啦涛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/简介/" rel="tag"><i class="fa fa-tag"></i> 简介</a>
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/24/Linux0：虚拟机上安装Ubuntu/" rel="next" title="Linux0：虚拟机上安装Ubuntu">
+                <i class="fa fa-chevron-left"></i> Linux0：虚拟机上安装Ubuntu
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/25/Linux1：文件和目录/" rel="prev" title="Linux1：文件和目录">
+                Linux1：文件和目录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="呜啦啦拉啦涛" />
+            
+              <p class="site-author-name" itemprop="name">呜啦啦拉啦涛</p>
+              <p class="site-description motion-element" itemprop="description">爱生活，爱女友，爱思考，爱编程</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/LotharZhao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhaoltt@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo" target="_blank">Hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.guitu18.com/" title="夜月归途" target="_blank">夜月归途</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统（Operation-System，OS）"><span class="nav-number">1.</span> <span class="nav-text">操作系统（Operation System，OS）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的作用"><span class="nav-number">1.1.</span> <span class="nav-text">操作系统的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同应用领域的主流操作系统"><span class="nav-number">1.2.</span> <span class="nav-text">不同应用领域的主流操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-gt-桌面操作系统"><span class="nav-number">1.2.1.</span> <span class="nav-text">1&gt; 桌面操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-gt-服务器操作系统"><span class="nav-number">1.2.2.</span> <span class="nav-text">2&gt; 服务器操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-gt-嵌入式操作系统"><span class="nav-number">1.2.3.</span> <span class="nav-text">3&gt; 嵌入式操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-gt-移动设备操作系统"><span class="nav-number">1.2.4.</span> <span class="nav-text">4&gt; 移动设备操作系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机"><span class="nav-number">1.3.</span> <span class="nav-text">虚拟机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的发展历史"><span class="nav-number">2.</span> <span class="nav-text">操作系统的发展历史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix"><span class="nav-number">2.1.</span> <span class="nav-text">Unix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#C语言"><span class="nav-number">2.1.1.</span> <span class="nav-text">C语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unix家谱"><span class="nav-number">2.1.2.</span> <span class="nav-text">Unix家谱</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minix"><span class="nav-number">2.2.</span> <span class="nav-text">Minix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux"><span class="nav-number">2.3.</span> <span class="nav-text">Linux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux内核及发行版"><span class="nav-number">3.</span> <span class="nav-text">Linux内核及发行版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux内核版本"><span class="nav-number">3.1.</span> <span class="nav-text">Linux内核版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux发行版本"><span class="nav-number">3.2.</span> <span class="nav-text">Linux发行版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的应用领域"><span class="nav-number">4.</span> <span class="nav-text">Linux的应用领域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器领域"><span class="nav-number">4.1.</span> <span class="nav-text">服务器领域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌入式领域"><span class="nav-number">4.2.</span> <span class="nav-text">嵌入式领域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人桌面领域"><span class="nav-number">4.3.</span> <span class="nav-text">个人桌面领域</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">呜啦啦拉啦涛</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

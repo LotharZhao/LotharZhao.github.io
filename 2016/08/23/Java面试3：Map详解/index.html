@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit10.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit9.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,面试,集合类," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java中的Map集合使用键(key)值(value)来保存数据，是我们平时经常使用的一种集合类，它的主要实现类有HashMap，HashTable，TreeMap等等，下面将对常用的几个实现类进行分析讲解。">
+<meta name="keywords" content="Java,面试,集合类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java面试3：Map详解">
+<meta property="og:url" content="https://lotharzhao.github.io/2016/08/23/Java面试3：Map详解/index.html">
+<meta property="og:site_name" content="LotharZhao">
+<meta property="og:description" content="Java中的Map集合使用键(key)值(value)来保存数据，是我们平时经常使用的一种集合类，它的主要实现类有HashMap，HashTable，TreeMap等等，下面将对常用的几个实现类进行分析讲解。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://lotharzhao.github.io/images/java/map.jpg">
+<meta property="og:image" content="https://lotharzhao.github.io/images/java/hashmap.jpg">
+<meta property="og:image" content="https://lotharzhao.github.io/images/java/hashmap-put.jpg">
+<meta property="og:image" content="https://lotharzhao.github.io/images/java/LinkedHashMap.jpg">
+<meta property="og:image" content="https://lotharzhao.github.io/images/java/ConcurrentHashMap.jpg">
+<meta property="og:updated_time" content="2018-04-13T00:47:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java面试3：Map详解">
+<meta name="twitter:description" content="Java中的Map集合使用键(key)值(value)来保存数据，是我们平时经常使用的一种集合类，它的主要实现类有HashMap，HashTable，TreeMap等等，下面将对常用的几个实现类进行分析讲解。">
+<meta name="twitter:image" content="https://lotharzhao.github.io/images/java/map.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '0CKA439RWX',
+      apiKey: '7ace8b872181d6b98f32d1757c2b5fa9',
+      indexName: 'wulalala',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lotharzhao.github.io/2016/08/23/Java面试3：Map详解/"/>
+
+
+
+
+
+  <title>Java面试3：Map详解 | LotharZhao</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/my_js/love.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LotharZhao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Warmly welcome to my blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lotharzhao.github.io/2016/08/23/Java面试3：Map详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="呜啦啦拉啦涛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LotharZhao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java面试3：Map详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-23T13:37:00+08:00">
+                2016-08-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-13T08:47:54+08:00">
+                2018-04-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Java中的Map集合使用键(key)值(value)来保存数据，是我们平时经常使用的一种集合类，它的主要实现类有HashMap，HashTable，TreeMap等等，下面将对常用的几个实现类进行分析讲解。<a id="more"></a></p>
+<p><img src="\images\java\map.jpg" alt="map"></p>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>HashMap是一个采用哈希表实现的键值对集合，继承自抽象类AbstractMap，实现了Map接口 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class HashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;</span><br><span class="line">    implements Map&lt;K,V&gt;, Cloneable, Serializable &#123;</span><br></pre></td></tr></table></figure></p>
+<p>HashMap的特殊存储结构使得在获取指定元素前需要经过哈希运算，得到目标元素在哈希表中的位置，然后再进行少量比较即可得到元素，这使得HashMap的查找效率贼高。当发生哈希冲突（碰撞）的时候，HashMap采用拉链法 进行解决，因此HashMap的底层实现是<code>数组+链表</code>（JDK1.8中引入了<code>红黑树</code>），如下图所示：<br><img src="\images\java\hashmap.jpg" alt="hashmap"></p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>key用Set存放，所以想做到key不允许重复，key对应的类需要重写hashCode()和equals()方法;</li>
+<li>允许空键和空值，但空键只有一个，且放在第一位；</li>
+<li>元素是无序的，而且顺序会不定时改变；</li>
+<li>插入、获取的时间复杂度基本是O(1)（前提是有适当的哈希函数，让元素分布在均匀的位置）</li>
+<li>遍历整个Map需要的时间与桶(数组)的长度成正比（因此初始化时HashMap的容量不宜太大）</li>
+<li>JDK1.8引入红黑树是因为：当HashMap中有大量的元素都存放到同一个桶中时，这个桶下有一条长长的链表，这个时候HashMap就相当于一个单链表，假如单链表有n个元素，遍历的时间复杂度就是O(n)，完全失去了它的优势；引入了查找时间复杂度为 O(logn)的红黑树来优化这个问题；</li>
+<li>HashMap扩容开销很大，需要创建新数组、重新哈希、分配等等。</li>
+</ul>
+<h3 id="插入操作逻辑"><a href="#插入操作逻辑" class="headerlink" title="插入操作逻辑"></a>插入操作逻辑</h3><ul>
+<li>调用hash()方法计算哈希值，然后调用putVal()方法中根据哈希值进行相关操作；</li>
+<li>如果当前哈希表内容为空，新建一个哈希表；如果要插入的桶中没有元素，新建个节点并放入；</li>
+<li>否则从桶中第一个元素开始查找哈希值对应的位置：<ul>
+<li>如果桶中第一个元素的哈希值和要添加的一样，替换，结束查找</li>
+<li>如果第一个元素不一样，而且当前采用的还是JDK 8以后的树形节点，调用putTreeVal()进行插入，否则还是从传统的链表数组中查找、替换，结束查找</li>
+<li>当这个桶内链表个数大于等于8，就要调用treeifyBin()方法进行树形化</li>
+</ul>
+</li>
+<li>最后检查是否需要扩容。<br><img src="\images\java\hashmap-put.jpg" alt="put()"></li>
+</ul>
+<h3 id="重要的成员变量"><a href="#重要的成员变量" class="headerlink" title="重要的成员变量"></a>重要的成员变量</h3><ul>
+<li><p>默认初始容量：16，必须是2的整数次方（因为计算速度快，存取高效，要尽量较少碰撞，就是要尽量把数据分配均匀）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The default initial capacity - MUST be a power of two.</span><br><span class="line"> */</span><br><span class="line">static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4; // aka 16</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最大容量： 2^30次方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The maximum capacity, used if a higher value is implicitly specified</span><br><span class="line"> * by either of the constructors with arguments.</span><br><span class="line"> * MUST be a power of two &lt;= 1&lt;&lt;30.</span><br><span class="line"> */</span><br><span class="line">static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>默认加载因子的大小：0.75，决定了HashMap中的元素占有多少比例时扩容，结合时间和空间效率考虑得到的。加载因子太大的话发生冲突的可能就会大，查找的效率反而变低；太小的话频繁rehash，导致性能降低。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The load factor used when none specified in constructor.</span><br><span class="line"> */</span><br><span class="line">static final float DEFAULT_LOAD_FACTOR = 0.75f;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>树形阈值：JDK 1.8新增的，这是链表的最大长度，当大于8时，链表转化为红黑树 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The bin count threshold for using a tree rather than list for a</span><br><span class="line"> * bin.  Bins are converted to trees when adding an element to a</span><br><span class="line"> * bin with at least this many nodes. The value must be greater</span><br><span class="line"> * than 2 and should be at least 8 to mesh with assumptions in</span><br><span class="line"> * tree removal about conversion back to plain bins upon</span><br><span class="line"> * shrinkage.</span><br><span class="line"> */</span><br><span class="line">static final int TREEIFY_THRESHOLD = 8;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>非树形阈值：当小于6时，红黑树转化为链表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The bin count threshold for untreeifying a (split) bin during a</span><br><span class="line"> * resize operation. Should be less than TREEIFY_THRESHOLD, and at</span><br><span class="line"> * most 6 to mesh with shrinkage detection under removal.</span><br><span class="line"> */</span><br><span class="line">static final int UNTREEIFY_THRESHOLD = 6;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>哈希表的最小树形化容量：当哈希表中的容量大于这个值时，表中的桶才能进行树形化，否则桶内元素太多时会扩容，而不是树形化。为了避免进行扩容、树形化选择的冲突，这个值不能小于4×TREEIFY_THRESHOLD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The smallest table capacity for which bins may be treeified.</span><br><span class="line"> * (Otherwise the table is resized if too many nodes in a bin.)</span><br><span class="line"> * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts</span><br><span class="line"> * between resizing and treeification thresholds.</span><br><span class="line"> */</span><br><span class="line">static final int MIN_TREEIFY_CAPACITY = 64;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>哈希表中的链表数组，存储Node类的数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The table, initialized on first use, and resized as</span><br><span class="line"> * necessary. When allocated, length is always a power of two.</span><br><span class="line"> * (We also tolerate length zero in some operations to allow</span><br><span class="line"> * bootstrapping mechanics that are currently not needed.)</span><br><span class="line"> */</span><br><span class="line">transient Node&lt;K,V&gt;[] table;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缓存的键值对集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Holds cached entrySet(). Note that AbstractMap fields are used</span><br><span class="line"> * for keySet() and values().</span><br><span class="line"> */</span><br><span class="line">transient Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>键值对的数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The number of key-value mappings contained in this map.</span><br><span class="line"> */</span><br><span class="line">transient int size;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当前HashMap修改的次数，这个变量用来保证fail-fast机制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The number of times this HashMap has been structurally modified</span><br><span class="line"> * Structural modifications are those that change the number of mappings in</span><br><span class="line"> * the HashMap or otherwise modify its internal structure (e.g.,</span><br><span class="line"> * rehash).  This field is used to make iterators on Collection-views of</span><br><span class="line"> * the HashMap fail-fast.  (See ConcurrentModificationException).</span><br><span class="line"> */</span><br><span class="line">transient int modCount;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>阈值，=容量×加载因子,扩容的门限值，当size大于这个值时，table数组进行扩容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The next size value at which to resize (capacity * load factor).</span><br><span class="line"> *</span><br><span class="line"> * @serial</span><br><span class="line"> */</span><br><span class="line">// (The javadoc description is true upon serialization.</span><br><span class="line">// Additionally, if the table array has not been allocated, this</span><br><span class="line">// field holds the initial array capacity, or zero signifying</span><br><span class="line">// DEFAULT_INITIAL_CAPACITY.)</span><br><span class="line">int threshold;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="重要的方法"><a href="#重要的方法" class="headerlink" title="重要的方法"></a>重要的方法</h3><ul>
+<li>put() 插入map</li>
+<li>get() 根据key取出value</li>
+<li>hash() 计算对应的位置</li>
+<li>resize() 扩容</li>
+<li>putTreeVal() 树形节点的插入</li>
+<li>treeifyBin() 桶的树形化</li>
+</ul>
+<h2 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h2><p>和HashMap一样，Hashtable也是一个散列表，它存储的内容是键值对(key-value)映射。Hashtable继承于<code>Dictionary</code>，实现了Map、Cloneable、java.io.Serializable接口。Hashtable是一个古老的类，从其名字便可以看出，其命名没有遵循java的命名规范。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class Hashtable&lt;K,V&gt; extends Dictionary&lt;K,V&gt;</span><br><span class="line">    implements Map&lt;K,V&gt;, Cloneable, java.io.Serializable &#123;</span><br></pre></td></tr></table></figure></p>
+<h3 id="与HashMap的区别"><a href="#与HashMap的区别" class="headerlink" title="与HashMap的区别"></a>与HashMap的区别</h3><ul>
+<li>Hashtable继承自Dictionary类，而HashMap是Java1.2引进的Map接口的一个实现；</li>
+<li>HashMap允许将null作为一个entry的key或者value，而Hashtable不允许；</li>
+<li>HashMap是非synchronized，而Hashtable是synchronized；Hashtable是线程安全的，HashMap就必须为之提供外同步；</li>
+<li>由于HashMap非线程安全，在只有一个线程访问的情况下，效率要高于Hashtable；</li>
+<li>HashMap把Hashtable的contains()方法去掉了，改成containsValue()和containsKey(),因为contains()方法容易让人引起误解;</li>
+<li>HashMap的Iterator迭代器是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的；fail-fast机制是java集合(Collection)中的一种错误机制。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出该异常，但这并不是一个一定发生的行为，要看JVM，这同样也是Enumeration和Iterator的区别。</li>
+<li>两者通过hash值散列到hash表的算法不一样：<ul>
+<li>Hashtable是古老的<code>除留余数法</code>，直接使用hashcode；</li>
+<li>HashMap是强制容量为2的幂，重新根据hashcode计算hash值，再使用hash位和hash表长度减1进行与操作（ <code>h &amp; (length - 1)</code>），也等价取膜，但更加高效，取得的位置更加分散，偶数、奇数保证了都会分散到；前者就不能保证。</li>
+</ul>
+</li>
+</ul>
+<h2 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h2><p>LinkedHashMap继承于HashMap，底层使用哈希表和<code>双向链表</code>来保存所有元素，并且它是非同步，允许使用null值和null键。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class LinkedHashMap&lt;K,V&gt; extends HashMap&lt;K,V&gt;</span><br><span class="line">    implements Map&lt;K,V&gt;</span><br></pre></td></tr></table></figure></p>
+<p>基本操作与父类HashMap相似，通过重写HashMap相关方法，重新定义了数组中保存的元素Entry，来实现自己的链接列表特性。该Entry除了保存当前对象的引用外，还保存了其上一个元素before和下一个元素after的引用，从而构成了双向链接列表。<br><img src="\images\java\LinkedHashMap.jpg" alt="LinkedHashMap"></p>
+<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><p>ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术（<code>分段锁</code>）。它使用了多个锁来控制对hash表的不同段(Segment)进行的修改，每个段其实就是一个小的hashtable，它们有自己的锁。只要多个并发发生在不同的段上，它们就可以并发进行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class ConcurrentHashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;</span><br><span class="line">    implements ConcurrentMap&lt;K,V&gt;, Serializable &#123;</span><br></pre></td></tr></table></figure></p>
+<p>ConcurrentHashMap在底层将key-value当成一个整体进行处理，这个整体就是一个Entry对象。Hashtable底层采用一个Entry[]数组来保存所有的key-value对，当需要存储一个Entry对象时，会根据key的hash算法来决定其在数组中的存储位置，在根据equals方法决定其在该数组位置上的链表中的存储位置；当需要取出一个Entry时，也会根据key的hash算法找到其在数组中的存储位置，再根据equals方法从该位置上的链表中取出该Entry。<br>ConcurrentHashMap完全允许多个读操作并发进行，读操作并不需要加锁。如果使用传统的技术，如HashMap中的实现，如果允许可以在hash链的中间添加或删除元素，读操作不加锁将得到不一致的数据。ConcurrentHashMap实现技术是保证HashEntry几乎是不可变的。<br><img src="\images\java\ConcurrentHashMap.jpg" alt="ConcurrentHashMap"></p>
+<h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><p>TreeMap就是一个<code>红黑树</code>数据结构，每个key-value对即作为红黑树的一个节点。TreeMap存储key-value对(节点)时，需要根据key对节点进行排序。TreeMap可以保证所有的key-value对处于有序状态，TreeMap也有两种排序方式: 自然排序、定制排序，即根据其键的自然顺序进行排序，或者根据创建映射时提供的Comparator进行排序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class TreeMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;</span><br><span class="line">    implements NavigableMap&lt;K,V&gt;, Cloneable, java.io.Serializable</span><br></pre></td></tr></table></figure></p>
+<h2 id="EnumMap"><a href="#EnumMap" class="headerlink" title="EnumMap"></a>EnumMap</h2><p>EnumMap是一个与枚举类一起使用的Map实现，EnumMap中的所有key都必须是单个枚举类的枚举值。创建EnumMap时必须显式或隐式指定它对应的枚举类，EnumMap根据key的自然顺序（即枚举值在枚举类中的定义顺序）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class EnumMap&lt;K extends Enum&lt;K&gt;, V&gt; extends AbstractMap&lt;K, V&gt;</span><br><span class="line">    implements java.io.Serializable, Cloneable</span><br></pre></td></tr></table></figure></p>
+<h2 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h2><p>WeakHashMap与HashMap的用法基本相似。区别在于，HashMap的key保留了对实际对象的<code>“强引用”</code>，这意味着只要该HashMap对象不被销毁，该HashMap所引用的对象就不会被垃圾回收；但WeakHashMap的key只保留了对实际对象的<code>“弱引用”</code>，这意味着如果WeakHashMap对象的key所引用的对象没有被其他强引用变量所引用，则这些key所引用的对象可能被垃圾回收，当垃圾回收了该key所对应的实际对象之后，WeakHashMap也可能自动删除这些key所对应的key-value对。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class WeakHashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;</span><br><span class="line">    implements Map&lt;K,V&gt; &#123;</span><br></pre></td></tr></table></figure></p>
+<h2 id="IdentityHashMap"><a href="#IdentityHashMap" class="headerlink" title="IdentityHashMap"></a>IdentityHashMap</h2><p>IdentityHashMap的实现机制与HashMap基本相似，在IdentityHashMap中，当且仅当两个key严格相等<code>(key1 == key2)</code>时，IdentityHashMap才认为两个key相等，而不是用equals()方法来比对。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class IdentityHashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;</span><br><span class="line">    implements Map&lt;K,V&gt;, java.io.Serializable, Cloneable</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢打赏！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="呜啦啦拉啦涛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="呜啦啦拉啦涛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          
+            <a href="/tags/集合类/" rel="tag"><i class="fa fa-tag"></i> 集合类</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/23/Java面试2：集合类综述/" rel="next" title="Java面试2：集合类综述">
+                <i class="fa fa-chevron-left"></i> Java面试2：集合类综述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/23/Java面试4：Collection详解/" rel="prev" title="Java面试4：Collection详解">
+                Java面试4：Collection详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="呜啦啦拉啦涛" />
+            
+              <p class="site-author-name" itemprop="name">呜啦啦拉啦涛</p>
+              <p class="site-description motion-element" itemprop="description">爱生活，爱女友，爱思考，爱编程</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/LotharZhao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhaoltt@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo" target="_blank">Hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.guitu18.com/" title="夜月归途" target="_blank">夜月归途</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">1.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入操作逻辑"><span class="nav-number">1.2.</span> <span class="nav-text">插入操作逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要的成员变量"><span class="nav-number">1.3.</span> <span class="nav-text">重要的成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要的方法"><span class="nav-number">1.4.</span> <span class="nav-text">重要的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hashtable"><span class="nav-number">2.</span> <span class="nav-text">Hashtable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与HashMap的区别"><span class="nav-number">2.1.</span> <span class="nav-text">与HashMap的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedHashMap"><span class="nav-number">3.</span> <span class="nav-text">LinkedHashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">4.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TreeMap"><span class="nav-number">5.</span> <span class="nav-text">TreeMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EnumMap"><span class="nav-number">6.</span> <span class="nav-text">EnumMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WeakHashMap"><span class="nav-number">7.</span> <span class="nav-text">WeakHashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IdentityHashMap"><span class="nav-number">8.</span> <span class="nav-text">IdentityHashMap</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">呜啦啦拉啦涛</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
