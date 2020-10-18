@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit10.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit9.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="简介,Git," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Git是分布式版本控制和源代码管理系统，重点使用和管理代码的速度。 Git最初是由Linus Torvalds设计开发的，用于管理Linux内核开发。Git是根据GNU通用公共许可证版本2的条款分发的自由/免费软件。Git官网">
+<meta name="keywords" content="简介,Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git0：简介">
+<meta property="og:url" content="https://lotharzhao.github.io/2015/06/13/blog/git/Git0：简介/index.html">
+<meta property="og:site_name" content="LotharZhao">
+<meta property="og:description" content="Git是分布式版本控制和源代码管理系统，重点使用和管理代码的速度。 Git最初是由Linus Torvalds设计开发的，用于管理Linux内核开发。Git是根据GNU通用公共许可证版本2的条款分发的自由/免费软件。Git官网">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2015-06-13T04:12:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git0：简介">
+<meta name="twitter:description" content="Git是分布式版本控制和源代码管理系统，重点使用和管理代码的速度。 Git最初是由Linus Torvalds设计开发的，用于管理Linux内核开发。Git是根据GNU通用公共许可证版本2的条款分发的自由/免费软件。Git官网">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '0CKA439RWX',
+      apiKey: '7ace8b872181d6b98f32d1757c2b5fa9',
+      indexName: 'wulalala',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lotharzhao.github.io/2015/06/13/blog/git/Git0：简介/"/>
+
+
+
+
+
+  <title>Git0：简介 | LotharZhao</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/my_js/love.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LotharZhao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Warmly welcome to my blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lotharzhao.github.io/2015/06/13/blog/git/Git0：简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="呜啦啦拉啦涛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LotharZhao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git0：简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-13T12:12:06+08:00">
+                2015-06-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2015-06-13T12:12:06+08:00">
+                2015-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Git是分布式版本控制和源代码管理系统，重点使用和管理代码的速度。 Git最初是由Linus Torvalds设计开发的，用于管理Linux内核开发。Git是根据GNU通用公共许可证版本2的条款分发的自由/免费软件。Git<a href="https://git-scm.com/" target="_blank" rel="noopener">官网</a><a id="more"></a></p>
+<h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><ul>
+<li><p>Workspace：工作区</p>
+<blockquote>
+<p>通过git init创建的代码库的所有文件但是不包括.git文件(版本库)</p>
+</blockquote>
+</li>
+<li><p>Index/Stage：暂存区，也叫索引</p>
+<blockquote>
+<p>通过git add ./<em>/</em>Xxx/Xxxx* 添加的修改,都是进入到暂存区了,肉眼不可见；通过 git status 可以看到修改的状态</p>
+</blockquote>
+</li>
+<li><p>Repository：仓库区（或本地仓库），也存储库</p>
+</li>
+<li>Remote：远程仓库</li>
+</ul>
+<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
+<ul>
+<li>本地版本控制系统</li>
+<li>集中化版本控制系统</li>
+<li>分布式版本控制系统</li>
+</ul>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h4 id="直接记录快照，而非差异比较"><a href="#直接记录快照，而非差异比较" class="headerlink" title="直接记录快照，而非差异比较"></a>直接记录快照，而非差异比较</h4><p>Git 和其它版本控制系统(包括 Subversion 和近似工具)的主要差别在于 Git 对待数据的方法。</p>
+<ul>
+<li>概念上来区分，其它大部分系统以文件变更列表的方式存储信息。 这类系统(CVS、Subversion、Perforce、Bazaar 等等)将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。</li>
+<li>Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，或在 Git 中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。 Git 对待数据更像是一个快照流。</li>
+</ul>
+<h4 id="近乎所有操作都是本地执行"><a href="#近乎所有操作都是本地执行" class="headerlink" title="近乎所有操作都是本地执行"></a>近乎所有操作都是本地执行</h4><p>在 Git 中的绝大多数操作都只需要访问本地文件和资源，一般不需要来自网络上其它计算机的信息。</p>
+<h4 id="Git保证完整性"><a href="#Git保证完整性" class="headerlink" title="Git保证完整性"></a>Git保证完整性</h4><p> Git中所有数据在存储前都计算校验和，然后以校验和来引用。这意味着不可能在 Git不知情时更改任何文件内容或目录内容。 这个功能建构在 Git底层，是构成 Git哲学不可或缺的部分。若你在传送过程中丢失信息或损坏文件，Git就能发现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git 用以计算校验和的机制叫做 SHA-1 散列(hash，哈希)。这是一个由 40 个十六进制字符(0-9 和 a-f)组成字符串，基于 Git 中文件的内容或目录结构计算出来。 SHA-1 哈希看起来是这样：24b9da6552252987aa493b52f8696cd6d3b0037  </span><br><span class="line">Git 中使用这种哈希值的情况很多，你将经常看到这种哈希值。 实际上，Git 数据库中保存的信息都是以文件内容的哈希值来索引，而不是文件名。</span><br></pre></td></tr></table></figure></p>
+<h4 id="Git-一般只添加数据"><a href="#Git-一般只添加数据" class="headerlink" title="Git 一般只添加数据"></a>Git 一般只添加数据</h4><p>你执行的 Git 操作，几乎只往 Git 数据库中增加数据。 很难让 Git 执行任何不可逆操作，或者让它以任何方式清除数据。</p>
+<h4 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h4><ul>
+<li>committed：已提交，表示数据已经安全的保存在本地数据库中</li>
+<li>modified：已修改，表示修改了文件，但还没保存到数据库中</li>
+<li>staged：已暂存，表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中</li>
+</ul>
+<p>基本的 Git 工作流程如下：</p>
+<ul>
+<li>在工作目录中修改文件</li>
+<li>暂存文件，将文件的快照放入暂存区域</li>
+<li>提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。</li>
+</ul>
+<blockquote>
+<p>如果 Git 目录中保存着的特定版本文件，就属于已提交状态。 如果作了修改并已放入暂存区域，就属于已暂存状态。 如果自上次取出后，作了修改但还没有放到暂存区域，就是已修改状态。 </p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li>Ubuntu<blockquote>
+<p>sudo apt-get install git<br>git version</p>
+</blockquote>
+</li>
+</ul>
+<p><a href="http://git-scm.com/download/linux" target="_blank" rel="noopener">其他Linux安装Git</a></p>
+<ul>
+<li><p>Mac<br>略</p>
+</li>
+<li><p>Windows<br>官方版本可以在 Git 官方网站下载， 打开<code>http://git-scm.com/download/win</code> ，下载会自动开始。或安装GitHub for Windows</p>
+</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>Git 自带一个git config的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置：  </p>
+<ul>
+<li>/etc/gitconfig文件: 包含系统上每一个用户及他们仓库的通用配置。 如果使用带有–system选项的git config时，它会从此文件读写配置变量</li>
+<li>~/.gitconfig或~/.config/git/config文件：只针对当前用户。 可以传递–global选项让Git读写此文件。</li>
+<li>当前使用仓库的Git目录中的config文件(就是.git/config)：针对该仓库。每一个级别覆盖上一级别的配置，所以.git/config的配置变量会覆盖/etc/gitconfig中的配置变量。</li>
+</ul>
+<p>设置git的用户信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">$ git config --global user.email <span class="string">"email@example.com"</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>使用<code>$ git config --list</code>列出所有Git当时能找到的配置</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢打赏！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="呜啦啦拉啦涛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="呜啦啦拉啦涛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/简介/" rel="tag"><i class="fa fa-tag"></i> 简介</a>
+          
+            <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/10/use/使用github-hexo搭建个人博客/" rel="next" title="使用github+hexo搭建个人博客">
+                <i class="fa fa-chevron-left"></i> 使用github+hexo搭建个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/13/blog/git/Git1：常用命令/" rel="prev" title="Git1：常用命令">
+                Git1：常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="呜啦啦拉啦涛" />
+            
+              <p class="site-author-name" itemprop="name">呜啦啦拉啦涛</p>
+              <p class="site-description motion-element" itemprop="description">爱生活，爱女友，爱思考，爱编程</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/LotharZhao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhaoltt@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo" target="_blank">Hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.guitu18.com/" title="夜月归途" target="_blank">夜月归途</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关术语"><span class="nav-number">1.</span> <span class="nav-text">相关术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本控制"><span class="nav-number"></span> <span class="nav-text">版本控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number"></span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接记录快照，而非差异比较"><span class="nav-number">0.1.</span> <span class="nav-text">直接记录快照，而非差异比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#近乎所有操作都是本地执行"><span class="nav-number">0.2.</span> <span class="nav-text">近乎所有操作都是本地执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git保证完整性"><span class="nav-number">0.3.</span> <span class="nav-text">Git保证完整性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-一般只添加数据"><span class="nav-number">0.4.</span> <span class="nav-text">Git 一般只添加数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三种状态"><span class="nav-number">0.5.</span> <span class="nav-text">三种状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number"></span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number"></span> <span class="nav-text">配置</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">呜啦啦拉啦涛</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/Epsilon2.1.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

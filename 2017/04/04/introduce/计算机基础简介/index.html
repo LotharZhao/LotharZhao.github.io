@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit10.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit9.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="OS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="计算机设主要有五个部分组成：运算器、控制器、存储器、输入设备、输出设备。CPU是中央处理器，是控制和运算器；存储器的主要功能是存储程序和各种文件；输入输出设备一般统称I/O，用于连接计算机内外部。这些组件的连接则需要总线和主板来完成。">
+<meta name="keywords" content="OS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成简介">
+<meta property="og:url" content="https://lotharzhao.github.io/2017/04/04/introduce/计算机基础简介/index.html">
+<meta property="og:site_name" content="LotharZhao">
+<meta property="og:description" content="计算机设主要有五个部分组成：运算器、控制器、存储器、输入设备、输出设备。CPU是中央处理器，是控制和运算器；存储器的主要功能是存储程序和各种文件；输入输出设备一般统称I/O，用于连接计算机内外部。这些组件的连接则需要总线和主板来完成。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://lotharzhao.github.io/2017/04/04/introduce/计算机基础简介/1.计算机基础.assets/image-20200405171314214.png">
+<meta property="og:updated_time" content="2017-04-04T08:58:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机组成简介">
+<meta name="twitter:description" content="计算机设主要有五个部分组成：运算器、控制器、存储器、输入设备、输出设备。CPU是中央处理器，是控制和运算器；存储器的主要功能是存储程序和各种文件；输入输出设备一般统称I/O，用于连接计算机内外部。这些组件的连接则需要总线和主板来完成。">
+<meta name="twitter:image" content="https://lotharzhao.github.io/2017/04/04/introduce/计算机基础简介/1.计算机基础.assets/image-20200405171314214.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '0CKA439RWX',
+      apiKey: '7ace8b872181d6b98f32d1757c2b5fa9',
+      indexName: 'wulalala',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lotharzhao.github.io/2017/04/04/introduce/计算机基础简介/"/>
+
+
+
+
+
+  <title>计算机组成简介 | LotharZhao</title>
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/my_js/love.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LotharZhao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Warmly welcome to my blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lotharzhao.github.io/2017/04/04/introduce/计算机基础简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="呜啦啦拉啦涛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LotharZhao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机组成简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T16:58:05+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-04T16:58:05+08:00">
+                2017-04-04
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/introduce/" itemprop="url" rel="index">
+                    <span itemprop="name">introduce</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>计算机设主要有五个部分组成：运算器、控制器、存储器、输入设备、输出设备。CPU是中央处理器，是控制和运算器；存储器的主要功能是存储程序和各种文件；输入输出设备一般统称I/O，用于连接计算机内外部。这些组件的连接则需要总线和主板来完成。<a id="more"></a></p>
+<h2 id="1-CPU"><a href="#1-CPU" class="headerlink" title="1.CPU"></a>1.CPU</h2><p>CPU全称<code>Central Processing Unit</code>中央处理器，是一台计算机的运算核心和控制核心。功能主要是解释计算机指令以及处理计算机软件中的数据，分为三个关键阶段：提取、解码和执行。CPU从内存或CPU缓存中取出指令，放入指令寄存器，并对指令译码。它把指令分解成一系列的微操作，然后发出各种控制命令，执行微操作系列，从而完成一条指令的执行。</p>
+<h3 id="1-1-组成"><a href="#1-1-组成" class="headerlink" title="1.1.组成"></a>1.1.组成</h3><p>CPU主要由控制器、运算器、寄存器和时钟四部分组成。</p>
+<p><img src="1.计算机基础.assets/image-20200405171314214.png" alt="image-20200405171314214"></p>
+<ul>
+<li><strong>控制器</strong>：负责把内存上的指令、数据读入寄存器，并根据指令的结果控制计算机</li>
+<li><strong>运算器</strong>：负责运算从内存中读入寄存器的数据，算数逻辑单元ALU</li>
+<li><strong>时钟</strong>：负责发出CPU开始计时的时钟信号</li>
+<li><strong>寄存器</strong>：是中央处理器内的组成部分。它们可以用来暂存指令、数据和地址。可以将其看作是内存的一种。根据种类的不同，一个CPU内部会有 20-100个寄存器。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>种类</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>程序计数器<code>PC</code></td>
+<td>用于存放下一条指令所在单元的地址</td>
+</tr>
+<tr>
+<td>累加寄存器</td>
+<td>存储运行的数据和运算后的数据</td>
+</tr>
+<tr>
+<td>标志寄存器</td>
+<td>用于反应处理器的状态和运算结果的某些特征以及控制指令的执行</td>
+</tr>
+<tr>
+<td>指令寄存器</td>
+<td>储存正在被运行的指令，CPU内部使用，程序员无法对该寄存器进行读写</td>
+</tr>
+<tr>
+<td>栈寄存器</td>
+<td>存储栈区域的起始位置</td>
+</tr>
+<tr>
+<td>程序状态寄存器<code>PSW</code></td>
+<td>控制当前状态是内核态还是用户态</td>
+</tr>
+<tr>
+<td>基址寄存器</td>
+<td>存储数据内存的起始位置</td>
+</tr>
+<tr>
+<td>变址寄存器</td>
+<td>存储基址寄存器的相对地址</td>
+</tr>
+<tr>
+<td>通用寄存器</td>
+<td>存储任意数据</td>
+</tr>
+<tr>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-2-CPU指令执行过程"><a href="#1-2-CPU指令执行过程" class="headerlink" title="1.2.CPU指令执行过程"></a>1.2.CPU指令执行过程</h3><ol>
+<li>取指令：将内存中的指令读取到 CPU 中寄存器的过程，程序寄存器用于存储下一条指令所在的地址</li>
+<li>指令译码：指令译码器按照预定的指令格式，对取回的指令进行拆分和解释，识别区分出不同的指令类别以及各种获取操作数的方法</li>
+<li>执行指令：完成指令所规定的各种操作，具体实现指令的功能</li>
+<li>访问取数：根据指令的需要，有可能需要从内存中提取数据，此阶段的任务是：根据指令地址码，得到操作数在主存中的地址，并从主存中读取该操作数用于运算</li>
+<li>结果写回：Write Back，把执行指令阶段的运行结果数据写回到某种存储形式，结果数据经常被写到CPU的内部寄存器中，以便被后续的指令快速地存取</li>
+</ol>
+<h3 id="1-3-多核多线程"><a href="#1-3-多核多线程" class="headerlink" title="1.3.多核多线程"></a>1.3.多核多线程</h3><ul>
+<li><p><strong>线程、进程</strong>：进程包含线程，一个进程中包含多个线程。线程是CPU调度和分配的基本单位，进程是操作系统进行资源分配(CPU、内存、硬盘等)的最小单位</p>
+</li>
+<li><p><strong>单核CPU</strong>：实现多进程依靠于操作系统的进程调度算法，比如时间片轮转算法，有3个正在运行的程序（即三个进程），操作系统会让单核CPU轮流来运行这些进程,然后一个进程只运行2ms，这样看起来就像多个进程同时在运行,从而实现多进程</p>
+</li>
+<li><strong>多核CPU</strong>：一枚处理器集成了多个完成的计算引擎（内核），可以实现<strong>多线程的并行</strong></li>
+<li><strong>多核CPU和单核CPU对于进程来说都是并发的，不是并行</strong></li>
+</ul>
+<h3 id="1-4-CPU频率"><a href="#1-4-CPU频率" class="headerlink" title="1.4.CPU频率"></a>1.4.CPU频率</h3><p>也就是CPU的时钟频率，CPU运算时的工作的频率，1秒内发生的同步脉冲数，振荡器两个脉冲之间的时间量，单位赫兹（Hz），决定了CPU的运行速度</p>
+<p><code>1GHz=10^3MHz=10^6KHz= 10^9Hz</code></p>
+<h3 id="1-5-制程"><a href="#1-5-制程" class="headerlink" title="1.5.制程"></a>1.5.制程</h3><p>晶体管门电路的尺寸，单位是纳米（nm），2019年发展到7纳米。</p>
+<p>理论上，制程工艺越小，芯片面积越小，频率更高，功耗越小</p>
+<p><code>1nm=0.001um=10^-6mm=10^-9m</code></p>
+<blockquote>
+<p>摩尔定律：当价格不变时，集成电路上可容纳的元器件（晶体管）的数目，约每隔18-24个月便会增加一倍，性能也将提升一倍</p>
+</blockquote>
+<h2 id="2-内存"><a href="#2-内存" class="headerlink" title="2.内存"></a>2.内存</h2><ol>
+<li>内存（<code>Memory</code>）是计算机中最重要的部件之一，它是程序与CPU进行沟通的桥梁。计算机中所有程序的运行都是在内存中进行的，因此内存对计算机的影响非常大，内存又被称为主存，其作用是存放CPU中的运算数据，以及与硬盘等外部存储设备交换的数据。只要计算机在运行中，CPU就会把需要运算的数据调到主存中进行运算，当运算完成后CPU再将结果传送出来，主存的运行也决定了计算机的稳定运行</li>
+</ol>
+<ul>
+<li><strong>高速缓存</strong><code>Cache</code>：分为一级缓存（<code>L1 Cache</code>）、二级缓存（<code>L2 Cache</code>）、三级缓存（<code>L3 Cache</code>）这些数据，它位于内存和CPU之间，是一个读写速度<strong>比内存更快</strong>的存储器。当CPU向内存写入数据时，这些数据也会被写入高速缓存中。当CPU需要读取数据时，会直接从高速缓存中直接读取，如需要的数据在Cache中没有，CPU会再去读取内存中的数据。</li>
+<li><strong>随机存储器</strong><code>RAM</code>：内存中最重要的一种，既可以从中读取数据，也可以写入数据。当机器断电后，内存中的信息会丢失</li>
+<li><strong>只读存储器</strong><code>ROM</code>：只能用于数据的读取，不能写入数据，但是当机器停电时，这些数据不会丢失。非常快，而且便宜。在计算机中，用于启动计算机的引导加载模块（bootstrap）就存放在ROM中，一些I/O卡也采用ROM处理底层设备控制</li>
+</ul>
+<p>==未完待续==</p>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h2 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h2><p>操作系统是指控制和管理整个计算机系统的硬件和软件资源，并合理的组织调度计算机的工作和资源的分配，以提供给用户和其他软件方便的接口和环境集合。是随着计算机研究和应用的发展逐步形成并发展起来的，是计算机系统中最基本的系统软件</p>
+<p><strong>基本特征</strong></p>
+<ul>
+<li><strong>并发</strong>：计算机系统中同时存在多个运行着的程序，因此它具有处理和调度多个程序同时执行的能力</li>
+<li><strong>共享</strong>：资源共享，是指系统中的资源可供内存中多个并发执行的进程共同使用。有两种方式：互斥共享方式、同时访问方式。</li>
+<li><strong>虚拟</strong>：把一个物理上的实体变为若干个逻辑上的对应物。利用多种虚拟技术，分别用来实现虚拟处理器、虚拟内存和虚拟外部设备。虚拟技术可归纳为：时分复用技术和空分复用技术</li>
+<li><strong>异步</strong>：在多道程序环境下，允许多个程序并发执行，但由于资源有限，进程的执行不是一贯到底，而是走走停停，以不可预知的速度向前推进，这就是进程的异步性</li>
+</ul>
+<p><strong>工作状态</strong></p>
+<ul>
+<li><strong>核心态</strong>：</li>
+<li><strong>用户态</strong>：</li>
+</ul>
+<h2 id="2-进程"><a href="#2-进程" class="headerlink" title="2.进程"></a>2.进程</h2><h2 id="3-内存管理"><a href="#3-内存管理" class="headerlink" title="3.内存管理"></a>3.内存管理</h2><h2 id="4-文件系统"><a href="#4-文件系统" class="headerlink" title="4.文件系统"></a>4.文件系统</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢打赏！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="呜啦啦拉啦涛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="呜啦啦拉啦涛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OS/" rel="tag"><i class="fa fa-tag"></i> OS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/13/use/tomcat部署项目/" rel="next" title="tomcat部署项目">
+                <i class="fa fa-chevron-left"></i> tomcat部署项目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/04/introduce/OpenStack简介/" rel="prev" title="OpenStack简介">
+                OpenStack简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="呜啦啦拉啦涛" />
+            
+              <p class="site-author-name" itemprop="name">呜啦啦拉啦涛</p>
+              <p class="site-description motion-element" itemprop="description">爱生活，爱女友，爱思考，爱编程</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/LotharZhao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhaoltt@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo" target="_blank">Hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.guitu18.com/" title="夜月归途" target="_blank">夜月归途</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CPU"><span class="nav-number">1.</span> <span class="nav-text">1.CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-组成"><span class="nav-number">1.1.</span> <span class="nav-text">1.1.组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-CPU指令执行过程"><span class="nav-number">1.2.</span> <span class="nav-text">1.2.CPU指令执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-多核多线程"><span class="nav-number">1.3.</span> <span class="nav-text">1.3.多核多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-CPU频率"><span class="nav-number">1.4.</span> <span class="nav-text">1.4.CPU频率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-制程"><span class="nav-number">1.5.</span> <span class="nav-text">1.5.制程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-内存"><span class="nav-number">2.</span> <span class="nav-text">2.内存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统"><span class="nav-number"></span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基础"><span class="nav-number">1.</span> <span class="nav-text">1.基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-进程"><span class="nav-number">2.</span> <span class="nav-text">2.进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-内存管理"><span class="nav-number">3.</span> <span class="nav-text">3.内存管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-文件系统"><span class="nav-number">4.</span> <span class="nav-text">4.文件系统</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">呜啦啦拉啦涛</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/Epsilon2.1.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
