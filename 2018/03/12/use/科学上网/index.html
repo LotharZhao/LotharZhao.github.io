@@ -387,7 +387,7 @@
 <p>在上面文件插入</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "server":"0.0.0.0",</span><br><span class="line">    "server_port":端口, </span><br><span class="line">    "local_port":1080,</span><br><span class="line">    "password":"密码",</span><br><span class="line">    "timeout":600,</span><br><span class="line">    "method":"aes-256-cfb"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="4-启动服务端shadowsocks"><a href="#4-启动服务端shadowsocks" class="headerlink" title="4.启动服务端shadowsocks"></a>4.启动服务端shadowsocks</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ssserver -d start  -c /etc/shadowsocks.json</span><br><span class="line">/usr/bin/ssserver -d restart  -c /etc/shadowsocks.json #重启</span><br><span class="line">/usr/bin/ssserver -d stop  -c /etc/shadowsocks.json #关闭</span><br></pre></td></tr></table></figure>
-<h1 id="关闭服务器防火墙"><a href="#关闭服务器防火墙" class="headerlink" title="关闭服务器防火墙"></a>关闭服务器防火墙</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 查看防火墙状态</span><br><span class="line">firewall-cmd --state</span><br><span class="line"><span class="meta">#</span> 开启/重启/关闭防火墙</span><br><span class="line">service firewalld start/restart/stop</span><br></pre></td></tr></table></figure>
+<h1 id="关闭服务器防火墙"><a href="#关闭服务器防火墙" class="headerlink" title="关闭服务器防火墙"></a>关闭服务器防火墙</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看防火墙状态</span></span><br><span class="line">firewall-cmd --state</span><br><span class="line"><span class="meta">#</span><span class="bash"> 开启/重启/关闭防火墙</span></span><br><span class="line">service firewalld start/restart/stop</span><br></pre></td></tr></table></figure>
 <h1 id="下载客户端"><a href="#下载客户端" class="headerlink" title="下载客户端"></a>下载客户端</h1><p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">windows</a> <a href="https://github.com/shadowsocks/shadowsocks-android/releases" target="_blank" rel="noopener">安卓</a> <a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="noopener">Mac</a></p>
 
       
@@ -543,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
